@@ -2,6 +2,18 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
 
+const skills = [
+  { skill: "Javascript", level: "strong", color: "#A5E6BA" },
+  { skill: "HTML+CSS", level: "beginner", color: "#9AC6C5" },
+  { skill: "Java", level: "strong", color: "#7785AC" },
+  { skill: "PostgreSql", level: "intermediate", color: "#C8B8DB" },
+  { skill: "React", level: "beginner", color: "#B48291" },
+  { skill: "RESTful APIs", level: "intermediate", color: "#DED9E2" },
+  { skill: "Git", level: "intermediate", color: "#A8E0FF" },
+  { skill: "IntelliJ", level: "strong", color: "#FFEE93" },
+  { skill: "JUnit", level: "intermediate", color: "#99B898" },
+];
+
 function App() {
   return (
     <div className="card">
@@ -36,26 +48,24 @@ function Body() {
 
 function SkillList() {
   return (
-    <div className="skill-list">
-      <Skill name="JavaScript" emoji="🫣" backgroundColor="#A5E6BA" />
-      <Skill name="HTML+CSS" emoji="🤩" backgroundColor="#9AC6C5" />
-      <Skill name="Java" emoji="☕" backgroundColor="#7785AC" />
-      <Skill name="PostgreSql" emoji="🗃️" backgroundColor="#C8B8DB" />
-      <Skill name="React" emoji="😝" backgroundColor="#B48291" />
-      <Skill name="RESTful APIs" emoji="😴" backgroundColor="#DED9E2" />
-      <Skill name="Git" emoji="🤖" backgroundColor="#A8E0FF" />
-      <Skill name="IntelliJ" emoji="🤓" backgroundColor="#FFEE93" />
-      <Skill name="JUnit" emoji="🧐" backgroundColor="#99B898" />
-    </div>
+    <ul className="skill-list">
+      {skills.map((skillObject) => (
+        <Skill skillObject={skillObject} key={skillObject.skill} />
+      ))}
+    </ul>
   );
 }
 
-function Skill(props) {
+function Skill({ skillObject }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.backgroundColor }}>
-      <span>{props.name}</span>
-      <span>{props.emoji}</span>
-    </div>
+    <li className="skill" style={{ backgroundColor: skillObject.color }}>
+      <span>{skillObject.skill}</span>
+      <span>
+        {skillObject.level === "beginnger" && "👶"}
+        {skillObject.level === "intermediate" && "👍"}
+        {skillObject.level === "strong" && "💪"}
+      </span>
+    </li>
   );
 }
 
